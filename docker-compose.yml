@@ -1,0 +1,6 @@
+ruby:
+  dockerfile: Dockerfile
+  build: .
+  command: cp -a /out/rbenv-ruby-2.1.7.tar.gz /tmp
+  volumes:
+    - .:/tmp:rw
