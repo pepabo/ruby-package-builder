@@ -1,0 +1,19 @@
+FROM centos:5
+MAINTAINER hsbt@ruby-lang.org
+
+RUN yum -y update
+RUN rpm -Uvh http://dl.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
+RUN yum -y groupinstall "Development Tools"
+RUN yum -y install wget tar git zlib-devel openssl-devel readline-devel
+
+RUN mkdir -p /usr/local/rbenv/versions
+RUN git clone https://github.com/sstephenson/ruby-build.git /tmp/ruby-build
+ENV RUBY_VERSION 2.2.4
+RUN CONFIGURE_OPTS='--disable-install-doc --enable-bundled-libyaml --enable-bundled-libffi' /tmp/ruby-build/bin/ruby-build $RUBY_VERSION /usr/local/rbenv/versions/$RUBY_VERSION
+RUN rm -rf /tmp/ruby-build
+
+RUN /usr/local/rbenv/versions/$RUBY_VERSION/bin/gem install --no-document bundler
+
+RUN mkdir -p /out
+WORKDIR /usr/local/rbenv/versions/
+RUN tar -czf /out/rbenv-ruby-$RUBY_VERSION.tar.gz $RUBY_VERSION
