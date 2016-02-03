@@ -15,4 +15,4 @@ RUN /usr/local/rbenv/versions/$RUBY_VERSION/bin/gem install bundler --no-documen
 
 RUN mkdir -p /out
 WORKDIR /usr/local/rbenv/versions/
-RUN tar -c -v -z -f /out/rbenv-ruby-$RUBY_VERSION.tar.gz $RUBY_VERSION
+RUN tar -czf /out/rbenv-ruby-$RUBY_VERSION.tar.gz $RUBY_VERSION
