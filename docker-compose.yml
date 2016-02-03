@@ -11,3 +11,10 @@ centos6:
   command: cp -a /out/rbenv-ruby-2.2.4.tar.gz /tmp
   volumes:
     - .:/tmp:rw
+
+centos7:
+  dockerfile: Dockerfile.centos7
+  build: .
+  command: cp -a /out/rbenv-ruby-2.2.4.tar.gz /tmp
+  volumes:
+    - .:/tmp:rw

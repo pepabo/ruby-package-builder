@@ -2,17 +2,16 @@ FROM centos:7
 MAINTAINER minne
 
 RUN yum -y update
-RUN yum -y install --enablerepo=extras epel-release
 RUN yum -y groupinstall "Development Tools"
-RUN yum -y install wget make gcc zlib-devel openssl-devel readline-devel ncurses-devel gdbm-devel db4-devel libffi-devel libyaml-devel git
+RUN yum -y install wget zlib-devel openssl-devel readline-devel
 
 RUN mkdir -p /usr/local/rbenv/versions
 ENV RUBY_VERSION 2.2.4
 RUN git clone https://github.com/sstephenson/ruby-build.git /tmp/ruby-build
-RUN sh /tmp/ruby-build/install.sh
-RUN CONFIGURE_OPTS="--disable-install-doc --with-out-ext='win32,win32/*,win32ole,win32ole/*,tk,tk/*'" /usr/local/bin/ruby-build $RUBY_VERSION /usr/local/rbenv/versions/$RUBY_VERSION
-RUN /usr/local/rbenv/versions/$RUBY_VERSION/bin/gem install bundler --no-ri --no-rdoc
+RUN CONFIGURE_OPTS="--disable-install-doc --enable-bundled-libyaml --enable-bundled-libffi --with-out-ext='win32*,tk*'" /tmp/ruby-build/bin/ruby-build $RUBY_VERSION /usr/local/rbenv/versions/$RUBY_VERSION
 RUN rm -rf /tmp/ruby-build
+
+RUN /usr/local/rbenv/versions/$RUBY_VERSION/bin/gem install bundler --no-document
 
 RUN mkdir -p /out
 WORKDIR /usr/local/rbenv/versions/
