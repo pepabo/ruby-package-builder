@@ -1,20 +1,20 @@
 centos5:
   dockerfile: Dockerfile.centos5
   build: .
-  command: cp -a /out/rbenv-ruby-2.3.2.tar.gz /tmp
+  command: cp -a /out/rbenv-ruby-2.3.3.tar.gz /tmp
   volumes:
     - .:/tmp:rw
 
 centos6:
   dockerfile: Dockerfile.centos6
   build: .
-  command: cp -a /out/rbenv-ruby-2.3.2.tar.gz /tmp
+  command: cp -a /out/rbenv-ruby-2.3.3.tar.gz /tmp
   volumes:
     - .:/tmp:rw
 
 centos7:
   dockerfile: Dockerfile.centos7
   build: .
-  command: cp -a /out/rbenv-ruby-2.3.2.tar.gz /tmp
+  command: cp -a /out/rbenv-ruby-2.3.3.tar.gz /tmp
   volumes:
     - .:/tmp:rw
