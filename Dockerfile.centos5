@@ -1,5 +1,4 @@
 FROM centos:5
-MAINTAINER hsbt@ruby-lang.org
 
 RUN yum -y update
 RUN rpm -Uvh http://dl.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
