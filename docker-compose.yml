@@ -1,20 +1,31 @@
-centos5:
-  dockerfile: Dockerfile.centos5
-  build: .
-  command: cp -a /out/rbenv-ruby-2.4.3.tar.gz /tmp
-  volumes:
-    - .:/tmp:rw
+version: "2"
+services:
+  centos5:
+    build:
+      dockerfile: Dockerfile.centos5
+      context: .
+      args:
+        RUBY_VERSION: ${RUBY_VERSION}
+    command: "cp -a /out/rbenv-ruby-${RUBY_VERSION}.tar.gz /tmp"
+    volumes:
+      - .:/tmp:rw
 
-centos6:
-  dockerfile: Dockerfile.centos6
-  build: .
-  command: cp -a /out/rbenv-ruby-2.4.3.tar.gz /tmp
-  volumes:
-    - .:/tmp:rw
+  centos6:
+    build:
+      dockerfile: Dockerfile.centos6
+      context: .
+      args:
+        RUBY_VERSION: ${RUBY_VERSION}
+    command: "cp -a /out/rbenv-ruby-${RUBY_VERSION}.tar.gz /tmp"
+    volumes:
+      - .:/tmp:rw
 
-centos7:
-  dockerfile: Dockerfile.centos7
-  build: .
-  command: cp -a /out/rbenv-ruby-2.4.3.tar.gz /tmp
-  volumes:
-    - .:/tmp:rw
+  centos7:
+    build:
+      dockerfile: Dockerfile.centos7
+      context: .
+      args:
+        RUBY_VERSION: ${RUBY_VERSION}
+    command: "cp -a /out/rbenv-ruby-${RUBY_VERSION}.tar.gz /tmp"
+    volumes:
+      - .:/tmp:rw
